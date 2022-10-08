@@ -1,29 +1,27 @@
 import { useState } from "react";
 import styles from "./index.module.css";
 import { api } from "../../actions";
+import { regexCEP } from "../../utils/functions/regex";
 
 const Search = () => {
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState({});
 
-  const handleSearch = async () => {
-    const data = await api.get(`http://localhost:3001/?cep=${cep}`);
+  const handleFind = async () => {
+    const data = await api.get(cep);
     setAddress(data.data);
     console.log(data.data);
   };
 
-  const handleChangeCEP = (e) => {
-    setCep(e.target.value);
+  const handleChange = (e) => {
+    const cepRegex = regexCEP(e);
+    setCep(cepRegex);
   };
 
   return (
     <div className={styles.searchContainer}>
-      <input
-        type="number"
-        placeholder="Digite o CEP"
-        onChange={handleChangeCEP}
-      />
-      <button onClick={() => handleSearch(cep)}>Pesquisar</button>
+      <input type="text" placeholder="99999-999" onChange={handleChange} />
+      <button onClick={() => handleFind(cep)}>Pesquisar</button>
       {address.logradouro && (
         <div>
           <p>Bairro: {address.bairro}</p>
