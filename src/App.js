@@ -4,10 +4,10 @@ import styles from "./utils/styles/app.module.css";
 
 function App() {
   return (
-    <main className={styles.container}>
+    <div className={styles.container}>
       <Header />
       <Search />
-    </main>
+    </div>
   );
 }
 

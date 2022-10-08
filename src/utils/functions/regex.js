@@ -1,8 +1,11 @@
-export const regexCEP = (number) => {
-  number.currentTarget.maxLength = 9;
-  let value = number.currentTarget.value;
+export const regexCEP = (e) => {
+  e.currentTarget.maxLength = 9;
+
+  let value = e.currentTarget.value;
+
   value = value.replace(/\D/g, "");
   value = value.replace(/(\d{5})(\d)/, "$1-$2");
-  number.currentTarget.value = value;
-  return number.currentTarget.value;
+
+  e.currentTarget.value = value;
+  return e.currentTarget.value;
 };
