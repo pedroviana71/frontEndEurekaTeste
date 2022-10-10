@@ -1,0 +1,39 @@
+.addressContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 16px 8px;
+    border: 1px solid #ffc535;
+    border-radius: 8px;
+    width: 400px;
+}
+
+.buttonContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20px;
+    width: 40px;
+}
+
+.button{
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.copyIcon{
+    font-size: 24px;
+    color: #ffc535;
+}
+.copyIconHover{
+    color: #455a64;
+    font-size: 24px;
+}
+
+@media screen and (max-width: 768px) {
+    .addressContainer{
+        width: 250px;
+    }
+}

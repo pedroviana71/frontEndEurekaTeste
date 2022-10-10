@@ -1,3 +1,9 @@
-.headerContainer{
-    background-color: #FFCA36;
+.headerContainer {
+    padding: 24px;
+    text-align: center;
+}
+
+.title {
+    font-size: 36px;
+    color: #455A64;
 }

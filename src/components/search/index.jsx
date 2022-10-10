@@ -2,15 +2,24 @@ import { useState } from "react";
 import { regexCEP } from "../../utils/functions/regex";
 import { getCEP } from "../../actions/cep";
 import styles from "./index.module.css";
+import { BiSearch } from "react-icons/bi";
+import Address from "../address";
 
 const Search = () => {
   const [cep, setCep] = useState("");
   const [address, setAddress] = useState({});
+  const [showInvalidAddress, setShowInvalidAdress] = useState(false);
 
   const handleSearch = async () => {
     const formattedCEP = cep.replace(/[-]/g, "");
     const data = await getCEP(formattedCEP);
-    setAddress(data);
+    if (data && !data.erro && cep) {
+      setAddress(data);
+      setShowInvalidAdress(false);
+    } else {
+      setShowInvalidAdress(true);
+      setAddress({});
+    }
   };
 
   const handleChange = (e) => {
@@ -18,16 +27,28 @@ const Search = () => {
     setCep(cepRegex);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch(cep);
+    }
+  };
+
   return (
-    <div className={styles.searchContainer}>
-      <input type="text" placeholder="99999-999" onChange={handleChange} />
-      <button onClick={() => handleSearch(cep)}>Pesquisar</button>
-      {address.logradouro && (
-        <div>
-          <p>Bairro: {address.bairro}</p>
-          <p>Logradouro: {address.logradouro}</p>
-        </div>
-      )}
+    <div className={styles.container}>
+      <div className={styles.searchContainer}>
+        <input
+          onKeyDown={(e) => handleKeyDown(e)}
+          type="text"
+          placeholder="Informe o CEP"
+          onChange={handleChange}
+          className={styles.searchInput}
+          autoFocus
+        />
+        <button onClick={() => handleSearch(cep)} className={styles.button}>
+          <BiSearch className={styles.icon} />
+        </button>
+      </div>
+      <Address address={address} showInvalidAddress={showInvalidAddress} />
     </div>
   );
 };
