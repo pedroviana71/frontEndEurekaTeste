@@ -7,18 +7,18 @@ const Address = ({ address, showInvalidAddress }) => {
   const [hover, setHover] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const showText = () => {
+  const showMessageTextCopied = () => {
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
     }, 1000);
   };
 
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(
+  const handleCopy = () => {
+    navigator.clipboard.writeText(
       `${address.logradouro}, ${address.bairro}, ${address.localidade}, ${address.uf}`
     );
-    showText();
+    showMessageTextCopied();
   };
 
   return (
