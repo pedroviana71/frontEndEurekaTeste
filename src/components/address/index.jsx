@@ -25,7 +25,7 @@ const Address = ({ address, showInvalidAddress }) => {
     <>
       {address.logradouro && (
         <div className={styles.addressContainer}>
-          <div className={styles.address}>
+          <div>
             <p>Bairro: {address.bairro}</p>
             <p>Logradouro: {address.logradouro}</p>
             <p>Localidade: {address.localidade}</p>

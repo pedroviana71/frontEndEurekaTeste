@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { regexCEP } from "../../utils/functions/regex";
 import { getCEP } from "../../actions/cep";
-import styles from "./index.module.css";
 import { BiSearch } from "react-icons/bi";
+import styles from "./index.module.css";
 import Address from "../address";
 
 const Search = () => {
